@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { m } from "motion/react";
 
 import { Icon } from "@/components/icon";
 import { KpiTile } from "@/components/mock/kpi-tile";
@@ -18,13 +18,13 @@ const rise = {
 
 export function HeroMockup() {
   return (
-    <motion.div
+    <m.div
       initial="hidden"
       animate="show"
       transition={{ staggerChildren: 0.08 }}
       className="relative"
     >
-      <motion.div
+      <m.div
         variants={rise}
         className="bg-card dark:ring-foreground/5 overflow-hidden rounded-xl border shadow-sm dark:shadow-none dark:ring-1"
       >
@@ -76,9 +76,9 @@ export function HeroMockup() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </m.div>
 
-      <motion.div
+      <m.div
         variants={rise}
         className="bg-popover text-popover-foreground dark:ring-foreground/5 mt-4 w-full max-w-xs rounded-xl border p-3 shadow-sm sm:absolute sm:-bottom-24 sm:-left-10 sm:mt-0 dark:shadow-none dark:ring-1"
       >
@@ -90,7 +90,7 @@ export function HeroMockup() {
         <Button size="xs" className="mt-3">
           {heroMockup.copilotBubble.action}
         </Button>
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }
