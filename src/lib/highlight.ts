@@ -5,7 +5,10 @@ export async function highlight(code: string, lang: string) {
 
   return codeToHtml(code, {
     lang,
-    themes: { light: "github-light", dark: "github-dark" },
+    themes: {
+      light: "github-light-high-contrast",
+      dark: "github-dark-high-contrast",
+    },
     defaultColor: false,
   });
 }
