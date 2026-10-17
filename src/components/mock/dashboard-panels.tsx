@@ -324,3 +324,8 @@ export const panels: Record<DashboardPage, () => React.JSX.Element> = {
   Developers,
   Settings,
 };
+
+export function DashboardPanel({ page }: { page: DashboardPage }) {
+  const Panel = panels[page];
+  return <Panel />;
+}

@@ -1,10 +1,11 @@
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, m } from "motion/react";
 import { useState } from "react";
 
 import { Icon } from "@/components/icon";
-import { panels } from "@/components/mock/dashboard-panels";
+import { DashboardPanelLazy } from "@/components/mock/dashboard-panel-lazy";
+import { LazyOnVisible } from "@/components/lazy-on-visible";
 import { SampleBadge } from "@/components/mock/sample-badge";
 import { Section } from "@/components/section";
 import { SectionHeading } from "@/components/section-heading";
@@ -18,7 +19,6 @@ import { cn } from "@/lib/utils";
 
 export function DashboardTour() {
   const [active, setActive] = useState<DashboardPage>("Overview");
-  const Panel = panels[active];
 
   return (
     <Section id="dashboard">
@@ -64,17 +64,19 @@ export function DashboardTour() {
             <h3 className="font-semibold">{active}</h3>
             <SampleBadge label={dashboardTour.sampleDataLabel} />
           </div>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
-            >
-              <Panel />
-            </motion.div>
-          </AnimatePresence>
+          <LazyOnVisible minHeight={320}>
+            <AnimatePresence mode="wait">
+              <m.div
+                key={active}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.15 }}
+              >
+                <DashboardPanelLazy page={active} />
+              </m.div>
+            </AnimatePresence>
+          </LazyOnVisible>
         </div>
       </div>
     </Section>
