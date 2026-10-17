@@ -16,11 +16,11 @@ export function Mechanism() {
         title={mechanism.title}
         description={mechanism.description}
       />
-      <ol className="mt-12 flex flex-col items-stretch lg:flex-row lg:items-stretch">
+      <div className="mt-12 flex flex-col items-stretch lg:flex-row lg:items-stretch">
         {mechanism.steps.map((step, index) => (
           <Fragment key={step.title}>
             {index > 0 ? <DashedConnector /> : null}
-            <li className="lg:flex-1">
+            <div className="lg:flex-1">
               <Card className="h-full gap-3 py-5">
                 <CardContent className="space-y-2 px-5">
                   <div className="flex items-center gap-2">
@@ -37,10 +37,10 @@ export function Mechanism() {
                   </p>
                 </CardContent>
               </Card>
-            </li>
+            </div>
           </Fragment>
         ))}
-      </ol>
+      </div>
       <Card className="mt-8 gap-3 py-5">
         <CardContent className="flex flex-col gap-3 px-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-muted-foreground text-sm">{mechanism.note}</p>
