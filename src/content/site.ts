@@ -738,3 +738,116 @@ export const developers = {
   }
 }`,
 } as const;
+
+export const howItWorks = {
+  eyebrow: "How it works",
+  title: "Three calls to go live.",
+  description: "Create a checkout, verify access, handle webhooks.",
+  previewLabel: "API preview",
+  steps: [
+    {
+      title: "Create a checkout",
+      description:
+        "One call returns a hosted payment page. Redirect your customer to it.",
+    },
+    {
+      title: "Verify access",
+      description:
+        "Ask whether a customer has an active plan before serving the product.",
+    },
+    {
+      title: "Handle webhooks",
+      description: "Fulfil orders and keep access in sync from signed events.",
+    },
+  ],
+  snippets: [
+    {
+      tab: "Create checkout",
+      lang: "ts",
+      code: `import { WhitechainTools } from "@whitechaintools/core";
+
+const whitechaintools = new WhitechainTools({ apiKey: process.env.WHITECHAINTOOLS_API_KEY! });
+
+const checkout = await whitechaintools.checkout.create({
+  productId: "prod_pro_monthly",
+  customerEmail: "ada@example.com",
+  currencies: ["USDT", "USDC", "WBT"],
+});
+
+// redirect the customer to checkout.url`,
+    },
+    {
+      tab: "Verify access",
+      lang: "ts",
+      code: `const { hasAccess, grant } = await whitechaintools.customers.access.verify(
+  "cus_123",
+  "prod_pro_monthly",
+);
+
+if (!hasAccess) throw new Error("No active subscription");
+// grant.type is "subscription" or "one_time"`,
+    },
+    {
+      tab: "Handle webhooks",
+      lang: "ts",
+      code: `export async function POST(req: Request) {
+  const body = await req.text();
+  const signature = req.headers.get("x-whitechaintools-signature")!;
+  const event = whitechaintools.webhooks.constructEvent(body, signature, process.env.WHITECHAINTOOLS_WEBHOOK_SECRET!);
+
+  switch (event.type) {
+    case "payment.confirmed":
+      // fulfil the order
+      break;
+    case "subscription.renewed":
+      // keep access active
+      break;
+    case "subscription.canceled":
+      // revoke access
+      break;
+  }
+  return Response.json({ received: true });
+}`,
+    },
+  ],
+} as const;
+
+export const mechanism = {
+  eyebrow: "Mechanism",
+  title: "Recurring billing without custody.",
+  description: "How onchain subscriptions work, step by step.",
+  steps: [
+    {
+      title: "Customer approves once",
+      description:
+        "Their smart account grants WhitechainTools a capped spend permission, e.g. 20 USDT per 30 days, revocable any time.",
+      icon: "ShieldCheck",
+    },
+    {
+      title: "Renewal runs onchain",
+      description:
+        "At period end, the renewal executor pulls exactly the allowed amount. It can never exceed the cap.",
+      icon: "RefreshCw",
+    },
+    {
+      title: "Gas is sponsored",
+      description:
+        "A paymaster covers gas in WBT so customers only hold stablecoins.",
+      icon: "Fuel",
+    },
+    {
+      title: "Merchant is notified",
+      description:
+        "A signed subscription.renewed webhook fires, and the payment is visible on the Whitechain explorer.",
+      icon: "Webhook",
+    },
+    {
+      title: "Customer stays in control",
+      description:
+        "Cancel or pause from the portal revokes or pauses the permission.",
+      icon: "UserCog",
+    },
+  ] satisfies { title: string; description: string; icon: LucideIconName }[],
+  note: "Built on ERC-4337 smart accounts and spend permissions. Every renewal is a verifiable onchain transaction.",
+  noteStatus: { status: "porting", milestone: "M1" },
+} as const;
