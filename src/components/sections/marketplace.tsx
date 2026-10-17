@@ -29,7 +29,7 @@ export function Marketplace() {
         ))}
       </div>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {marketplace.apps.map((app) => (
           <Card key={app.name} className="gap-4 py-5">
             <CardContent className="space-y-3 px-5">

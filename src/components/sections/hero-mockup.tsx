@@ -40,7 +40,7 @@ export function HeroMockup() {
           <SampleBadge label={heroMockup.sampleDataLabel} />
         </div>
 
-        <div className="grid sm:grid-cols-[9.5rem_1fr]">
+        <div className="grid grid-cols-1 sm:grid-cols-[9.5rem_1fr]">
           <aside className="hidden border-r p-3 sm:block">
             <div className="bg-accent text-accent-foreground mb-3 flex items-center justify-between rounded-md px-2 py-1 text-[11px] font-medium">
               {heroMockup.testModeLabel}
@@ -63,7 +63,7 @@ export function HeroMockup() {
           </aside>
 
           <div className="space-y-3 p-3">
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+            <div className="grid grid-cols-1 grid-cols-2 gap-2 sm:grid-cols-3">
               {heroMockup.kpis.map((kpi) => (
                 <KpiTile key={kpi.label} {...kpi} />
               ))}

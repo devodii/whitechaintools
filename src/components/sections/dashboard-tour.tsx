@@ -27,7 +27,7 @@ export function DashboardTour() {
         title={dashboardTour.title}
         description={dashboardTour.description}
       />
-      <div className="mt-12 grid gap-6 lg:grid-cols-[14rem_1fr]">
+      <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-[14rem_1fr]">
         <div
           role="tablist"
           aria-label="Dashboard pages"

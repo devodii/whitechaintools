@@ -15,7 +15,7 @@ export function HowItWorks() {
         title={howItWorks.title}
         description={howItWorks.description}
       />
-      <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1.4fr]">
+      <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.4fr]">
         <ol className="space-y-6">
           {howItWorks.steps.map((step, index) => (
             <li key={step.title} className="flex gap-4">
@@ -34,7 +34,7 @@ export function HowItWorks() {
 
         <Tabs defaultValue={first?.tab} className="min-w-0 gap-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <TabsList>
+            <TabsList className="max-w-full justify-start overflow-x-auto">
               {howItWorks.snippets.map(({ tab }) => (
                 <TabsTrigger key={tab} value={tab}>
                   {tab}

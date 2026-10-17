@@ -15,7 +15,7 @@ export function Developers() {
         title={developers.title}
         description={developers.description}
       />
-      <div className="mt-12 grid gap-8 lg:grid-cols-2">
+      <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2">
         <ul className="space-y-3">
           {developers.bullets.map((bullet) => (
             <li key={bullet} className="flex items-start gap-3 text-sm">

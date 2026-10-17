@@ -12,7 +12,7 @@ export function WhyWhitechain() {
         title={whyWhitechain.title}
         description={whyWhitechain.description}
       />
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {whyWhitechain.items.map((item) => (
           <Card key={item.title} className="gap-4 py-5">
             <CardContent className="space-y-3 px-5">

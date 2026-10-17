@@ -22,7 +22,7 @@ export function Team() {
         title={team.title}
         description={team.description}
       />
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {team.members.map((member) => (
           <Card key={member.name} className="gap-4 py-6">
             <CardContent className="flex flex-col items-center space-y-3 px-5 text-center">

@@ -16,7 +16,7 @@ export function Hero() {
         aria-hidden="true"
         className="bg-glow pointer-events-none absolute top-0 left-1/2 h-96 w-3xl -translate-x-1/2 -translate-y-1/3"
       />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 py-20 sm:px-6 md:py-28 lg:grid-cols-[1fr_1.1fr]">
+      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 px-4 py-20 sm:px-6 md:py-28 lg:grid-cols-[1fr_1.1fr]">
         <div className="space-y-6">
           <p className="bg-card inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium">
             <span className="relative flex size-2">

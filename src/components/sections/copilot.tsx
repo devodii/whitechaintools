@@ -19,7 +19,7 @@ export function Copilot() {
           title={copilot.title}
           description={copilot.description}
         />
-        <div className="mt-12 grid items-start gap-10 lg:grid-cols-[1fr_1.1fr]">
+        <div className="mt-12 grid grid-cols-1 items-start gap-10 lg:grid-cols-[1fr_1.1fr]">
           <ul className="space-y-5">
             {copilot.capabilities.map((capability) => (
               <li key={capability.title} className="flex gap-4">

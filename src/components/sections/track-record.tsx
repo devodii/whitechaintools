@@ -8,7 +8,7 @@ import { trackRecord } from "@/content/site";
 export function TrackRecord() {
   return (
     <Section id="track-record" className="bg-secondary/40">
-      <div className="grid gap-12 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
         <div className="space-y-6">
           <SectionHeading
             eyebrow={trackRecord.eyebrow}
