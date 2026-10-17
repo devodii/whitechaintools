@@ -131,3 +131,38 @@
     @apply bg-background text-foreground antialiased;
   }
 }
+
+@layer utilities {
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(
+      ellipse at top,
+      var(--foreground) 30%,
+      transparent 75%
+    );
+  }
+  .bg-glow {
+    background-image: radial-gradient(
+      ellipse at center,
+      var(--glow),
+      transparent 70%
+    );
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
