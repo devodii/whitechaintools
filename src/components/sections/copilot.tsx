@@ -1,4 +1,4 @@
-import { CopilotChat } from "@/components/copilot/copilot-chat";
+import { CopilotChatLazy } from "@/components/copilot/copilot-chat-lazy";
 import { Icon } from "@/components/icon";
 import { Section } from "@/components/section";
 import { SectionHeading } from "@/components/section-heading";
@@ -35,7 +35,7 @@ export function Copilot() {
               </li>
             ))}
           </ul>
-          <CopilotChat live={live} />
+          <CopilotChatLazy live={live} />
         </div>
       </div>
     </Section>
