@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WhitechainTools
 
-## Getting Started
+Landing page and proof of concept for WhitechainTools, the financial
+infrastructure layer for Whitechain. Built with Next.js (App Router), Tailwind
+CSS v4 and shadcn/ui.
 
-First, run the development server:
+This is a showcase for the Whitechain Builders Program, not the product.
+
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+cp .env.example .env.local   # optional, every variable is optional
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Other scripts:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command          | What it does                  |
+| ---------------- | ----------------------------- |
+| `pnpm build`     | Production build              |
+| `pnpm lint`      | ESLint                        |
+| `pnpm typecheck` | TypeScript, no emit           |
+| `pnpm format`    | Prettier (sorts Tailwind too) |
 
-## Learn More
+## Editing content
 
-To learn more about Next.js, take a look at the following resources:
+All copy, statuses, milestones, adapters, FAQ entries and team members live in
+[`src/content/site.ts`](src/content/site.ts) as typed constants. Components never
+hold copy, so you can change text without touching them.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Status badges use the `Status` type: `shipped-stellar`, `porting`, `planned`.
+- Features already live on StellarTools and being ported set
+  `shippedOnStellar: true` plus `status: "porting"`, which renders both badges.
+- Search for `TODO(founder)` to find values that need confirming (chain id,
+  Shopify status, pricing model, Whitechain figures).
+- Team photos are initials avatars. To use photos, add images under
+  `public/team/` and add an `AvatarImage` in `src/components/sections/team.tsx`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Theming
 
-## Deploy on Vercel
+Colors come from shadcn theme tokens in `src/app/globals.css` (`:root` and
+`.dark`). Components use semantic classes only (`bg-card`, `text-primary`,
+`border-border`). Do not hardcode hex, rgb or raw palette classes. To add a
+color, add a CSS variable and a `--color-*` mapping in `@theme inline`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The one exception is `src/lib/brand-colors.ts`, used by the generated OG image
+and favicon, which cannot read CSS variables.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Environment variables
+
+| Variable               | Purpose                                                          |
+| ---------------------- | ---------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL for metadata, sitemap and robots                   |
+| `RESEND_API_KEY`       | Optional. Adds waitlist signups to a Resend audience             |
+| `RESEND_AUDIENCE_ID`   | Optional. Audience for the signups above                         |
+| `AI_API_KEY`           | Optional. Enables live "Ask WhitechainTools" chat                |
+| `AI_MODEL`             | Optional. Gateway model id, default `anthropic/claude-haiku-4.5` |
+
+Without Resend keys the waitlist route logs signups to the server console and
+still returns success. Without `AI_API_KEY` the Copilot demo stays scripted and
+`/api/chat` returns 404.
+
+## Deploy
+
+The project deploys to Vercel. Set the variables above in the project settings
+and run `vercel --prod`, or connect the Git repository.
