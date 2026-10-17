@@ -59,14 +59,14 @@ export function SiteHeader() {
               <Link href={link.href}>{link.label}</Link>
             </Button>
           ))}
-          <div className="hidden lg:contents">
+          <div className="hidden xl:contents">
             {more.map((link) => (
               <Button key={link.href} variant="ghost" size="sm" asChild>
                 <Link href={link.href}>{link.label}</Link>
               </Button>
             ))}
           </div>
-          <div className="lg:hidden">
+          <div className="xl:hidden">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="sm">
