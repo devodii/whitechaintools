@@ -5,10 +5,7 @@ import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-import { Section } from "@/components/section";
-import { SectionHeading } from "@/components/section-heading";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -29,7 +26,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { waitlist } from "@/content/site";
 import { waitlistSchema, type WaitlistInput } from "@/lib/schemas";
 
-export function Waitlist() {
+export function WaitlistForm() {
   const form = useForm<WaitlistInput>({
     resolver: zodResolver(waitlistSchema),
     defaultValues: { email: "", building: "", url: "", company: "" },
@@ -51,132 +48,117 @@ export function Waitlist() {
   }
 
   return (
-    <Section id="waitlist" containerClassName="max-w-2xl">
-      <SectionHeading
-        eyebrow={waitlist.eyebrow}
-        title={waitlist.title}
-        description={waitlist.description}
-        align="center"
-      />
-      <Card className="mt-10">
-        <CardContent className="px-6">
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-5"
-              noValidate
-            >
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        autoComplete="email"
-                        placeholder="you@example.com"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="role"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>I am a</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      value={field.value ?? ""}
-                    >
-                      <FormControl>
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select one" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {waitlist.roles.map((role) => (
-                          <SelectItem key={role} value={role}>
-                            {role}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="building"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>What do you sell or build? (optional)</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        maxLength={500}
-                        rows={3}
-                        {...field}
-                        value={field.value ?? ""}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="url"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Store or project URL (optional)</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="url"
-                        placeholder="https://"
-                        {...field}
-                        value={field.value ?? ""}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="hidden" aria-hidden="true">
-                <label>
-                  Company
-                  <input
-                    type="text"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    {...form.register("company")}
-                  />
-                </label>
-              </div>
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full"
-                disabled={form.formState.isSubmitting}
-              >
-                {form.formState.isSubmitting ? (
-                  <>
-                    <Loader2 className="animate-spin" />
-                    Joining
-                  </>
-                ) : (
-                  "Join the waitlist"
-                )}
-              </Button>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
-    </Section>
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-5"
+        noValidate
+      >
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input
+                  type="email"
+                  autoComplete="email"
+                  placeholder="you@example.com"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="role"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>I am a</FormLabel>
+              <Select onValueChange={field.onChange} value={field.value ?? ""}>
+                <FormControl>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select one" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {waitlist.roles.map((role) => (
+                    <SelectItem key={role} value={role}>
+                      {role}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="building"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>What do you sell or build? (optional)</FormLabel>
+              <FormControl>
+                <Textarea
+                  maxLength={500}
+                  rows={3}
+                  {...field}
+                  value={field.value ?? ""}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="url"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Store or project URL (optional)</FormLabel>
+              <FormControl>
+                <Input
+                  type="url"
+                  placeholder="https://"
+                  {...field}
+                  value={field.value ?? ""}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <div className="hidden" aria-hidden="true">
+          <label>
+            Company
+            <input
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              {...form.register("company")}
+            />
+          </label>
+        </div>
+        <Button
+          type="submit"
+          size="lg"
+          className="w-full"
+          disabled={form.formState.isSubmitting}
+        >
+          {form.formState.isSubmitting ? (
+            <>
+              <Loader2 className="animate-spin" />
+              Joining
+            </>
+          ) : (
+            "Join the waitlist"
+          )}
+        </Button>
+      </form>
+    </Form>
   );
 }
