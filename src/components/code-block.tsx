@@ -1,6 +1,5 @@
-import { codeToHtml } from "shiki";
-
 import { CopyButton } from "@/components/copy-button";
+import { highlight } from "@/lib/highlight";
 import { cn } from "@/lib/utils";
 
 interface CodeBlockProps {
@@ -14,11 +13,7 @@ export async function CodeBlock({
   lang = "ts",
   className,
 }: CodeBlockProps) {
-  const html = await codeToHtml(code, {
-    lang,
-    themes: { light: "github-light", dark: "github-dark" },
-    defaultColor: false,
-  });
+  const html = await highlight(code, lang);
 
   return (
     <div
