@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { howItWorks } from "@/content/site";
+import { slugify } from "@/lib/utils";
 
 export function HowItWorks() {
   const first = howItWorks.snippets[0];
@@ -32,11 +33,14 @@ export function HowItWorks() {
           ))}
         </ol>
 
-        <Tabs defaultValue={first?.tab} className="min-w-0 gap-3">
+        <Tabs
+          defaultValue={first ? slugify(first.tab) : undefined}
+          className="min-w-0 gap-3"
+        >
           <div className="flex flex-wrap items-center justify-between gap-2">
             <TabsList className="max-w-full justify-start overflow-x-auto">
               {howItWorks.snippets.map(({ tab }) => (
-                <TabsTrigger key={tab} value={tab}>
+                <TabsTrigger key={tab} value={slugify(tab)}>
                   {tab}
                 </TabsTrigger>
               ))}
@@ -46,7 +50,7 @@ export function HowItWorks() {
             </Badge>
           </div>
           {howItWorks.snippets.map(({ tab, code, lang }) => (
-            <TabsContent key={tab} value={tab}>
+            <TabsContent key={tab} value={slugify(tab)}>
               <CodeBlock code={code} lang={lang} />
             </TabsContent>
           ))}

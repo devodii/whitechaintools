@@ -5,6 +5,7 @@ import { FeatureBadges } from "@/components/status-badge";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { platform, platformMap } from "@/content/site";
+import { slugify } from "@/lib/utils";
 
 export function PlatformMap() {
   const first = platformMap[0];
@@ -16,18 +17,25 @@ export function PlatformMap() {
         title={platform.title}
         description={platform.description}
       />
-      <Tabs defaultValue={first?.tab} className="mt-10 gap-6">
+      <Tabs
+        defaultValue={first ? slugify(first.tab) : undefined}
+        className="mt-10 gap-6"
+      >
         <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
           <TabsList className="h-auto min-w-max">
             {platformMap.map(({ tab }) => (
-              <TabsTrigger key={tab} value={tab} className="px-3 py-1.5">
+              <TabsTrigger
+                key={tab}
+                value={slugify(tab)}
+                className="px-3 py-1.5"
+              >
                 {tab}
               </TabsTrigger>
             ))}
           </TabsList>
         </div>
         {platformMap.map(({ tab, items }) => (
-          <TabsContent key={tab} value={tab}>
+          <TabsContent key={tab} value={slugify(tab)}>
             <div className="grid gap-3 md:grid-cols-2">
               {items.map((item) => (
                 <Card key={item.title} className="gap-0 py-4">
