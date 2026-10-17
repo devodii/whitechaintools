@@ -157,3 +157,99 @@ export const heroMockup = {
     action: "Draft email",
   },
 } as const;
+
+export const proof = {
+  eyebrow: "Track record",
+  title: "Already shipped. Now porting.",
+  description:
+    "Everything below is live on StellarTools today. We are bringing it to Whitechain.",
+  items: [
+    "TypeScript SDK on npm (@stellartools/core)",
+    "REST API with versioned requests and cursor pagination",
+    "Testnet and mainnet API keys",
+    "Hosted checkout and customer portal",
+    "Onchain subscriptions with trials, pause, cancel at period end",
+    "Metered (usage-based) billing",
+    "Payouts",
+    "Signed webhooks with retries, delivery logs and manual resend",
+    "MCP server for AI agents",
+    "7 framework adapters plus a plugin SDK",
+    "App marketplace (Resend, Loops)",
+    "Two-factor authentication",
+  ],
+  footnote:
+    "SCF #40 awardee · All grant milestones delivered · Vercel OSS Spring 2026",
+  footnoteHref: links.stellartools,
+} as const;
+
+export const primitives = {
+  id: "product",
+  eyebrow: "Product",
+  title: "Everything a business needs to get paid onchain.",
+  description:
+    "The building blocks, each with an honest status and the milestone it lands in.",
+  items: [
+    {
+      title: "Payments",
+      description:
+        "Price in USD, NGN, EUR and more. Customers pay in WBT, USDT or USDC on Whitechain.",
+      icon: "CreditCard",
+      status: "porting",
+      milestone: "M1",
+    },
+    {
+      title: "Subscriptions",
+      description:
+        "Daily, weekly, monthly, yearly or custom intervals. Trials, pause, resume, cancel at period end.",
+      icon: "RefreshCw",
+      status: "porting",
+      milestone: "M1",
+    },
+    {
+      title: "Hosted checkout",
+      description:
+        "Branded payment pages from a single API call. No frontend code.",
+      icon: "LayoutTemplate",
+      status: "porting",
+      milestone: "M1",
+    },
+    {
+      title: "Customer portal",
+      description: "Customers manage plans, wallets and invoices themselves.",
+      icon: "UserCog",
+      status: "porting",
+      milestone: "M2",
+    },
+    {
+      title: "Webhooks",
+      description:
+        "Signed events for every state change: payment.confirmed, subscription.renewed and more.",
+      icon: "Webhook",
+      status: "porting",
+      milestone: "M1",
+    },
+    {
+      title: "Access checks",
+      description:
+        "One call to know if a customer has an active plan. Powers the adapters.",
+      icon: "KeyRound",
+      status: "porting",
+      milestone: "M1",
+    },
+    {
+      title: "Refunds",
+      description: "Refund to the customer's wallet from the dashboard or API.",
+      icon: "Undo2",
+      status: "porting",
+      milestone: "M2",
+    },
+    {
+      title: "Gasless for customers",
+      description:
+        "A paymaster sponsors gas so customers pay in stablecoins without holding WBT.",
+      icon: "Fuel",
+      status: "planned",
+      milestone: "M2",
+    },
+  ] satisfies Feature[],
+} as const;
