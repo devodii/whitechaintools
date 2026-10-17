@@ -68,7 +68,7 @@ export const navLinks: NavLink[] = [
 ];
 
 /** Links shown inline in the header at medium widths; the rest go under "More". */
-export const primaryNavCount = 5;
+export const primaryNavCount = 3;
 
 export const footerColumns = {
   product: [
