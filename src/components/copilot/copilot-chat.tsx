@@ -81,14 +81,15 @@ export function CopilotChat({ live }: { live: boolean }) {
     setBusy(false);
   }
 
-  async function askLive(text: string, replyId: number) {
+  async function askLive(
+    history: { role: Message["role"]; content: string }[],
+    replyId: number,
+  ) {
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messages: [{ role: "user", content: text }],
-        }),
+        body: JSON.stringify({ messages: history }),
       });
       if (!response.ok || !response.body) throw new Error("unavailable");
       const reader = response.body.getReader();
@@ -110,12 +111,18 @@ export function CopilotChat({ live }: { live: boolean }) {
     event.preventDefault();
     const text = input.trim();
     if (!text || busy) return;
+    const history = [
+      ...messages
+        .filter((m) => m.text)
+        .map((m) => ({ role: m.role, content: m.text })),
+      { role: "user" as const, content: text },
+    ].slice(-8);
     setInput("");
     setBusy(true);
     add({ role: "user", text });
     const replyId = add({ role: "assistant", text: "", typing: true });
     if (live) {
-      await askLive(text, replyId);
+      await askLive(history, replyId);
     } else {
       if (!prefersReducedMotion()) await sleep(600);
       await streamWords(replyId, copilot.demoReply);
