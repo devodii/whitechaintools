@@ -1,34 +1,44 @@
 "use client";
 
 import { ArrowRight, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 import { Button } from "@/components/ui/button";
 import { announcement } from "@/content/site";
 
 const STORAGE_KEY = "announcement-dismissed";
 
-export function AnnouncementBar() {
-  const [visible, setVisible] = useState(true);
+const EVENT = "announcement-dismissed";
+let dismissedInMemory = false;
 
-  useEffect(() => {
-    try {
-      if (localStorage.getItem(STORAGE_KEY) === "1") setVisible(false);
-    } catch {
-      // storage unavailable, keep the bar visible
-    }
-  }, []);
+function subscribe(callback: () => void) {
+  window.addEventListener(EVENT, callback);
+  return () => window.removeEventListener(EVENT, callback);
+}
+
+function getSnapshot() {
+  if (dismissedInMemory) return true;
+  try {
+    return localStorage.getItem(STORAGE_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+export function AnnouncementBar() {
+  const dismissed = useSyncExternalStore(subscribe, getSnapshot, () => false);
 
   function dismiss() {
-    setVisible(false);
+    dismissedInMemory = true;
     try {
       localStorage.setItem(STORAGE_KEY, "1");
     } catch {
       // storage unavailable, dismissal lasts for this visit only
     }
+    window.dispatchEvent(new Event(EVENT));
   }
 
-  if (!visible) return null;
+  if (dismissed) return null;
 
   return (
     <div className="bg-accent text-accent-foreground relative border-b">
