@@ -1193,3 +1193,239 @@ export const whyWhitechain = {
   ] satisfies { title: string; description: string; icon: LucideIconName }[],
   note: "Figures from Whitechain's public materials.",
 } as const;
+
+export interface RoadmapMilestone {
+  label: Milestone;
+  title: string;
+  status: Status;
+  current?: boolean;
+  deliverables: string[];
+  verify: string[];
+}
+
+export const roadmap = {
+  eyebrow: "Roadmap",
+  title: "Milestones we'll be measured against.",
+  description: "What ships when, and how you can check it yourself.",
+  deliverablesLabel: "Deliverables",
+  verifyLabel: "How you can verify it",
+  milestones: [
+    {
+      label: "M1",
+      title: "Core payments on Whitechain Sepolia",
+      status: "porting",
+      current: true,
+      deliverables: [
+        "Billing contracts (spend-permission subscriptions, renewal executor)",
+        "One-time and subscription products",
+        "Local-currency pricing",
+        "Checkout for WBT, USDT, USDC and token-list ERC-20s",
+        "Versioned REST API with testnet and mainnet keys",
+        "@whitechaintools/core SDK",
+        "Signed webhooks (full event set)",
+        "Access checks",
+      ],
+      verify: [
+        "Verified contracts on the Whitechain explorer",
+        "Public npm package",
+        "Public docs",
+        "Open-source repo",
+      ],
+    },
+    {
+      label: "M2",
+      title: "Merchant surface and adapters",
+      status: "planned",
+      deliverables: [
+        "Full dashboard (all 10 pages)",
+        "Customer portal",
+        "Refunds",
+        "Usage-based billing",
+        "Payouts",
+        "2FA",
+        "Paymaster gas sponsorship",
+        "All adapters and the plugin SDK ported",
+        "MCP server",
+        "App marketplace with Resend and Loops",
+        "Adapter playground",
+      ],
+      verify: [
+        "Adapter playground live on testnet",
+        "Demo store accepting test payments end to end",
+      ],
+    },
+    {
+      label: "M3",
+      title: "AI Merchant Copilot",
+      status: "planned",
+      deliverables: [
+        "Copilot inside the dashboard built on the MCP tool layer",
+        "Natural-language plan setup",
+        "Failure explanations",
+        "Dunning drafts",
+        "Confirm-before-write actions",
+      ],
+      verify: [
+        "Public demo video",
+        "A test merchant account reviewers can use",
+      ],
+    },
+    {
+      label: "M4",
+      title: "Mainnet and first merchants",
+      status: "planned",
+      deliverables: [
+        "Security review of contracts",
+        "Mainnet deployment at Whitechain mainnet launch",
+        "Onboarding of first live merchants",
+        "Public status page",
+        "Stretch: experiments and cohorts, fiat cash-out with an ecosystem partner",
+      ],
+      verify: [
+        "Mainnet contract addresses",
+        "Onchain renewal transactions",
+        "Merchant count and renewal success rate reported monthly",
+      ],
+    },
+  ] satisfies RoadmapMilestone[],
+} as const;
+
+export const trackRecord = {
+  eyebrow: "Track record",
+  title: "We've done this before.",
+  story:
+    "StellarTools is our open-source, Stripe-like billing platform on Stellar. We were funded by the Stellar Community Fund (SCF #40), delivered every milestone, and shipped checkout, one-time and subscription billing, usage-based billing, a customer portal, payouts, versioned APIs, webhooks, an MCP server, 7 adapters, a plugin SDK, 2FA and an app marketplace. WhitechainTools takes that product to Whitechain.",
+  buttons: [
+    { label: "Visit StellarTools", href: links.stellartools },
+    { label: "Read the docs", href: links.docs },
+    { label: "View on GitHub", href: links.github },
+  ],
+  shipped: [
+    "Hosted checkout",
+    "One-time and subscription billing",
+    "Usage-based billing",
+    "Customer portal",
+    "Payouts",
+    "Versioned REST API",
+    "Signed webhooks with retries",
+    "MCP server",
+    "7 framework adapters",
+    "Plugin SDK",
+    "Two-factor authentication",
+    "App marketplace",
+  ],
+} as const;
+
+export interface TeamMember {
+  name: string;
+  role: string;
+  initials: string;
+  socials: { x?: string; github?: string; linkedin?: string };
+}
+
+export const team = {
+  eyebrow: "Team",
+  title: "The team behind StellarTools.",
+  description: "The same builders, now on Whitechain.",
+  linkLabel: "Meet us on stellartools.dev/team",
+  linkHref: links.teamPage,
+  members: [
+    {
+      name: "Emmanuel Odii",
+      role: "Founder & CEO",
+      initials: "EO",
+      socials: {
+        x: "https://x.com/devodii_",
+        github: "https://github.com/devodii",
+        linkedin: "https://www.linkedin.com/in/emmanuelodii/",
+      },
+    },
+    {
+      name: "Prince Ajuzie",
+      role: "Software Engineer",
+      initials: "PA",
+      socials: {
+        x: "https://x.com/princeajuzie7",
+        github: "https://github.com/princeajuzie7",
+        linkedin: "https://www.linkedin.com/in/princeajuzie/",
+      },
+    },
+    {
+      name: "Lucas Svoboda",
+      role: "Head of Product",
+      initials: "LS",
+      socials: {
+        linkedin: "https://www.linkedin.com/in/lucas-s-723a73212/",
+      },
+    },
+    {
+      name: "Mauricio Iriarte Hermida",
+      role: "Designer",
+      initials: "MI",
+      socials: {
+        linkedin: "https://www.linkedin.com/in/mauiriarte/",
+      },
+    },
+  ] satisfies TeamMember[],
+} as const;
+
+export const pricing = {
+  eyebrow: "Pricing",
+  // TODO(founder): confirm pricing model
+  title: "Simple pricing at launch.",
+  body: "1% of processed volume. No seat fees, no monthly plans. Free on testnet.",
+  note: "Final pricing announced at mainnet.",
+} as const;
+
+export const faq = {
+  eyebrow: "FAQ",
+  title: "Questions, answered.",
+  items: [
+    {
+      question: "Is WhitechainTools live?",
+      answer:
+        "Not yet. We're building on Whitechain Sepolia now and launching with Whitechain mainnet. Our Stellar version, StellarTools, is live today.",
+    },
+    {
+      question: "Is it custodial?",
+      answer:
+        "No. Customers pay from their own wallets and approve capped, revocable spend permissions. Funds go straight to the merchant.",
+    },
+    {
+      question: "Which tokens can customers pay with?",
+      answer: "WBT, USDT and USDC on Whitechain at launch.",
+    },
+    {
+      question: "Do customers need WBT for gas?",
+      answer:
+        "No. Our paymaster sponsors gas so customers can hold only stablecoins (planned for M2).",
+    },
+    {
+      question: "Can I use it with my existing store or app?",
+      answer:
+        "Yes. We're porting our WooCommerce, MedusaJS, Better Auth, AI SDK, LangChain and UploadThing adapters, plus our MCP server.",
+    },
+    {
+      question: "Is this an official Whitechain product?",
+      answer:
+        "No. WhitechainTools is independent, built by the StellarTools team.",
+    },
+    {
+      question: "Is it open source?",
+      answer: "Yes, like StellarTools.",
+    },
+  ],
+} as const;
+
+export const waitlist = {
+  eyebrow: "Waitlist",
+  title: "Be one of the first merchants on WhitechainTools.",
+  description: "Tell us what you are building and we will be in touch.",
+  roles: [
+    "Merchant / store",
+    "SaaS or app developer",
+    "Whitechain project",
+    "Other",
+  ],
+  success: "You're on the list.",
+} as const;
