@@ -37,9 +37,9 @@ export function Roadmap() {
               </CardHeader>
               <CardContent className="space-y-5 text-sm">
                 <div>
-                  <h4 className="text-muted-foreground mb-2 text-xs font-semibold tracking-wide uppercase">
+                  <h3 className="text-muted-foreground mb-2 text-xs font-semibold tracking-wide uppercase">
                     {roadmap.deliverablesLabel}
-                  </h4>
+                  </h3>
                   <ul className="marker:text-primary list-disc space-y-1 pl-4">
                     {milestone.deliverables.map((item) => (
                       <li key={item}>{item}</li>
@@ -47,9 +47,9 @@ export function Roadmap() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-muted-foreground mb-2 text-xs font-semibold tracking-wide uppercase">
+                  <h3 className="text-muted-foreground mb-2 text-xs font-semibold tracking-wide uppercase">
                     {roadmap.verifyLabel}
-                  </h4>
+                  </h3>
                   <ul className="marker:text-primary list-disc space-y-1 pl-4">
                     {milestone.verify.map((item) => (
                       <li key={item}>{item}</li>
