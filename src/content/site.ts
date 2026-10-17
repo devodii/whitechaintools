@@ -36,6 +36,7 @@ export const site = {
   title: "WhitechainTools: financial infrastructure for Whitechain",
   description:
     "Payments, subscriptions, usage billing, hosted checkout, customer portal, payouts and webhooks, with SDK framework adapters, an app marketplace and an AI copilot. Everything a business needs to get paid in WBT, USDT and USDC.",
+  copyrightYear: 2026,
   email: "hello@whitechaintools.xyz",
   disclaimer:
     "WhitechainTools is an independent project and is not affiliated with or endorsed by Whitechain, WhiteBIT or W Group. Roadmap items are planned and subject to change.",

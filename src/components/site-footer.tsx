@@ -57,8 +57,8 @@ export function SiteFooter() {
 
         <div className="text-muted-foreground mt-12 flex flex-col items-start justify-between gap-4 border-t pt-6 text-sm sm:flex-row sm:items-center">
           <p>
-            © {new Date().getFullYear()} {site.name}. Built on Next.js, deployed
-            on Vercel.
+            © {site.copyrightYear} {site.name}. Built on Next.js, deployed on
+            Vercel.
           </p>
           <div className="flex items-center gap-4">
             <a
