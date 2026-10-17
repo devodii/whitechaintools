@@ -1048,3 +1048,148 @@ export const marketplace = {
     href: links.buildingApps,
   },
 } as const;
+
+export type CopilotBlock =
+  | {
+      kind: "plan";
+      name: string;
+      price: string;
+      interval: string;
+      trial: string;
+    }
+  | {
+      kind: "failures";
+      rows: { customer: string; reason: string }[];
+    }
+  | {
+      kind: "email";
+      subject: string;
+      body: string;
+      action: string;
+    };
+
+export interface CopilotScript {
+  prompt: string;
+  reply: string;
+  block: CopilotBlock;
+  followUp?: string;
+}
+
+export const copilot = {
+  eyebrow: "Copilot",
+  title: "Your billing team, in a chat box.",
+  description:
+    "WhitechainTools Copilot runs on the same tools as our MCP server. It reads your billing data and takes actions only after you confirm.",
+  statusLabel: "Planned · M3",
+  sampleDataLabel: "Sample data",
+  inputPlaceholder: "Ask Copilot about your billing",
+  demoReply:
+    "This is a demo. Join the waitlist to try Copilot when it launches.",
+  capabilities: [
+    {
+      title: "Set up in plain English",
+      description: "Create a $20/month Pro plan with a 7-day trial.",
+      icon: "WandSparkles",
+    },
+    {
+      title: "Explain failures",
+      description:
+        "Why did renewals fail this week? Copilot reads failed renewals and explains the cause, like allowance too low or insufficient balance.",
+      icon: "SearchX",
+    },
+    {
+      title: "Recover revenue",
+      description:
+        "Drafts and sends win-back or dunning emails through the Resend or Loops app.",
+      icon: "Mail",
+    },
+    {
+      title: "Answer revenue questions",
+      description:
+        "MRR, churn and top plans, in the merchant's local currency.",
+      icon: "ChartColumn",
+    },
+    {
+      title: "Guide integrations",
+      description:
+        "Step-by-step setup for WooCommerce, Shopify or Medusa, generating the exact config.",
+      icon: "BookOpen",
+    },
+    {
+      title: "Safe by design",
+      description:
+        "Every write action shows a confirmation card with the exact change before it runs.",
+      icon: "ShieldCheck",
+    },
+  ] satisfies { title: string; description: string; icon: LucideIconName }[],
+  scripts: [
+    {
+      prompt: "Create a $20/month Pro plan with a 7-day trial.",
+      reply: "Here's the plan. Customers can pay in USDT, USDC or WBT.",
+      block: {
+        kind: "plan",
+        name: "Pro",
+        price: "$20.00",
+        interval: "Monthly",
+        trial: "7-day trial",
+      },
+    },
+    {
+      prompt: "Why did renewals fail this week?",
+      reply:
+        "3 renewals failed. 2 customers' spend allowance is below the new price after your price change, 1 wallet had insufficient USDT.",
+      block: {
+        kind: "failures",
+        rows: [
+          { customer: "ada@example.com", reason: "Allowance too low" },
+          { customer: "grace@example.com", reason: "Allowance too low" },
+          { customer: "linus@example.com", reason: "Insufficient USDT" },
+        ],
+      },
+      followUp: "Want me to email them a one-click re-approve link?",
+    },
+    {
+      prompt: "Draft a win-back email for customers who canceled in September.",
+      reply: "Here's a draft you can send to those customers.",
+      block: {
+        kind: "email",
+        subject: "Your Pro plan misses you",
+        body: "Hi there, we noticed you canceled your Pro plan in September. Come back any time and pick up right where you left off.",
+        action: "Send with Resend",
+      },
+    },
+  ] satisfies CopilotScript[],
+} as const;
+
+export const whyWhitechain = {
+  eyebrow: "Why Whitechain",
+  title: "Why we're building here.",
+  description: "Four reasons Whitechain is the right place for this product.",
+  // TODO(founder): verify the 10M+ users and sub-cent fee claims against Whitechain's public materials
+  items: [
+    {
+      title: "Distribution",
+      description:
+        "Whitechain connects to WhiteBIT's 10M+ users. Merchants on WhitechainTools can sell to people who already hold WBT and stablecoins.",
+      icon: "Users",
+    },
+    {
+      title: "Cost",
+      description: "Sub-cent fees make monthly micro-subscriptions viable.",
+      icon: "Coins",
+    },
+    {
+      title: "EVM equivalent",
+      description:
+        "Standard Solidity, viem and wallets, so our adapters port cleanly.",
+      icon: "Layers",
+    },
+    {
+      title: "Every dapp needs to get paid",
+      description:
+        "We give every team in the Whitechain ecosystem billing on day one, which turns into recurring, verifiable onchain activity.",
+      icon: "Rocket",
+    },
+  ] satisfies { title: string; description: string; icon: LucideIconName }[],
+  note: "Figures from Whitechain's public materials.",
+} as const;
