@@ -91,3 +91,69 @@ export const footerColumns = {
     { label: site.email, href: `mailto:${site.email}` },
   ] satisfies NavLink[],
 };
+
+export const hero = {
+  eyebrow: "Building on Whitechain",
+  title: "The financial infrastructure for the Whitechain economy.",
+  description: site.description,
+  primaryCta: { label: "Join the waitlist", href: "#waitlist" },
+  secondaryCta: {
+    label: "See what we shipped on Stellar",
+    href: links.docs,
+  },
+  openSource: "Open source. Built by the StellarTools team.",
+  githubLabel: "Star on GitHub",
+} as const;
+
+export const dashboardPages = [
+  "Overview",
+  "Products",
+  "Transactions",
+  "Customers",
+  "Subscriptions",
+  "Payouts",
+  "Marketplace",
+  "Copilot",
+  "Developers",
+  "Settings",
+] as const;
+
+export type DashboardPage = (typeof dashboardPages)[number];
+
+export const dashboardPageIcons: Record<DashboardPage, LucideIconName> = {
+  Overview: "LayoutDashboard",
+  Products: "Package",
+  Transactions: "ArrowLeftRight",
+  Customers: "Users",
+  Subscriptions: "RefreshCw",
+  Payouts: "Landmark",
+  Marketplace: "Store",
+  Copilot: "Sparkles",
+  Developers: "Code",
+  Settings: "Settings",
+};
+
+export const heroMockup = {
+  // TODO(founder): verify the Whitechain Sepolia chain id before launch
+  network: "Whitechain Sepolia · 1874",
+  sampleDataLabel: "Sample data",
+  testModeLabel: "Test mode",
+  kpis: [
+    { label: "MRR", value: "$12,000" },
+    { label: "Gross volume", value: "$48,000" },
+    { label: "Active subscriptions", value: "600" },
+    { label: "Active trials", value: "100" },
+    { label: "New customers", value: "250" },
+    { label: "Renewal success rate", value: "95%" },
+  ],
+  chartTitle: "Recurring revenue, last 30 days",
+  chartSeries: Array.from({ length: 30 }, (_, i) => ({
+    day: `Day ${i + 1}`,
+    revenue: 6000 + i * 200 + (i % 4) * 300,
+  })),
+  copilotBubble: {
+    message:
+      "3 renewals failed: allowance too low. Want me to email those customers?",
+    action: "Draft email",
+  },
+} as const;
