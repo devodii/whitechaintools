@@ -253,3 +253,297 @@ export const primitives = {
     },
   ] satisfies Feature[],
 } as const;
+
+// Items live on StellarTools and being ported carry shippedOnStellar plus a
+// "porting" status, so they render both badges.
+// TODO(founder): correct any status or milestone in this map.
+export const platformMap: { tab: string; items: Feature[] }[] = [
+  {
+    tab: "Payments",
+    items: [
+      {
+        title: "One-time products",
+        description: "Software licenses, downloads and access passes.",
+        icon: "Package",
+        status: "porting",
+        milestone: "M1",
+        shippedOnStellar: true,
+      },
+      {
+        title: "Local-currency pricing",
+        description:
+          "Price in USD, NGN, GHS, KES, EUR and more; customers pay in tokens.",
+        icon: "Globe",
+        status: "porting",
+        milestone: "M1",
+        shippedOnStellar: true,
+      },
+      {
+        title: "Multi-asset",
+        description:
+          "WBT, USDT, USDC, plus any ERC-20 on the Whitechain token list.",
+        icon: "Coins",
+        status: "porting",
+        milestone: "M1",
+      },
+      {
+        title: "Hosted checkout and payment links",
+        description: "Branded payment pages from one API call.",
+        icon: "LayoutTemplate",
+        status: "porting",
+        milestone: "M1",
+        shippedOnStellar: true,
+      },
+      {
+        title: "Transactions view",
+        description: "The onchain transaction hash for every payment.",
+        icon: "Receipt",
+        status: "porting",
+        milestone: "M1",
+        shippedOnStellar: true,
+      },
+      {
+        title: "Refunds",
+        description: "Refund to the customer's wallet.",
+        icon: "Undo2",
+        status: "porting",
+        milestone: "M2",
+        shippedOnStellar: true,
+      },
+    ],
+  },
+  {
+    tab: "Billing",
+    items: [
+      {
+        title: "Subscriptions",
+        description: "Daily, weekly, monthly, yearly or custom intervals.",
+        icon: "RefreshCw",
+        status: "porting",
+        milestone: "M1",
+        shippedOnStellar: true,
+      },
+      {
+        title: "Trials, pause and renewal",
+        description:
+          "Trials, pause, resume, cancel at period end, automatic renewal.",
+        icon: "Timer",
+        status: "porting",
+        milestone: "M1",
+        shippedOnStellar: true,
+      },
+      {
+        title: "Usage-based billing",
+        description: "Metered billing for APIs, seats and anything you count.",
+        icon: "Gauge",
+        status: "porting",
+        milestone: "M2",
+        shippedOnStellar: true,
+      },
+      {
+        title: "Access checks and entitlements",
+        description:
+          "customers.access.verify returns whether a customer can use a product.",
+        icon: "KeyRound",
+        status: "porting",
+        milestone: "M1",
+        shippedOnStellar: true,
+      },
+    ],
+  },
+  {
+    tab: "Customers",
+    items: [
+      {
+        title: "Customer records",
+        description: "Customer records with custom metadata.",
+        icon: "Users",
+        status: "porting",
+        milestone: "M1",
+        shippedOnStellar: true,
+      },
+      {
+        title: "Wallet payment methods",
+        description: "Wallets linked per customer.",
+        icon: "Wallet",
+        status: "porting",
+        milestone: "M1",
+        shippedOnStellar: true,
+      },
+      {
+        title: "Self-serve customer portal",
+        description: "Customers manage subscriptions, wallets and invoices.",
+        icon: "UserCog",
+        status: "porting",
+        milestone: "M2",
+        shippedOnStellar: true,
+      },
+    ],
+  },
+  {
+    tab: "Money out",
+    items: [
+      {
+        title: "Payouts dashboard",
+        description: "Withdraw to a merchant wallet.",
+        icon: "Landmark",
+        status: "porting",
+        milestone: "M2",
+        shippedOnStellar: true,
+      },
+      {
+        title: "Fiat cash-out",
+        description:
+          "Cash out to local bank accounts. We will explore this with ecosystem partners.",
+        icon: "Banknote",
+        status: "planned",
+      },
+      {
+        title: "Fiat on-ramp",
+        description:
+          "Let customers pay by card or bank transfer into a stablecoin.",
+        icon: "ArrowDownToLine",
+        status: "planned",
+      },
+    ],
+  },
+  {
+    tab: "Developers",
+    items: [
+      {
+        title: "REST API with cursor pagination",
+        description: "limit, starting_after and ending_before on every list.",
+        icon: "ListOrdered",
+        status: "porting",
+        milestone: "M1",
+        shippedOnStellar: true,
+      },
+      {
+        title: "API versioning",
+        description: "A dated version header, pinned per key or per request.",
+        icon: "Tag",
+        status: "porting",
+        milestone: "M1",
+        shippedOnStellar: true,
+      },
+      {
+        title: "Testnet and mainnet keys",
+        description: "The key encodes the environment, no flags needed.",
+        icon: "Key",
+        status: "porting",
+        milestone: "M1",
+        shippedOnStellar: true,
+      },
+      {
+        title: "TypeScript SDK",
+        description: "A typed client for every API resource.",
+        icon: "Code",
+        status: "porting",
+        milestone: "M1",
+        shippedOnStellar: true,
+      },
+      {
+        title: "OpenAPI spec",
+        description: "Generate clients in any language.",
+        icon: "FileJson",
+        status: "porting",
+        milestone: "M1",
+        shippedOnStellar: true,
+      },
+      {
+        title: "Signed webhooks",
+        description:
+          "Signed payloads, retries, delivery logs and manual resend.",
+        icon: "Webhook",
+        status: "porting",
+        milestone: "M1",
+        shippedOnStellar: true,
+      },
+      {
+        title: "MCP server",
+        description: "For Cursor, Claude and other agents.",
+        icon: "Terminal",
+        status: "porting",
+        milestone: "M2",
+        shippedOnStellar: true,
+      },
+      {
+        title: "Adapter playground",
+        description: "Live demos of every adapter.",
+        icon: "FlaskConical",
+        status: "porting",
+        milestone: "M2",
+        shippedOnStellar: true,
+      },
+    ],
+  },
+  {
+    tab: "Ecosystem",
+    items: [
+      {
+        title: "Framework adapters",
+        description: "Plug into the stack you already run. See the adapters.",
+        icon: "Plug",
+        status: "porting",
+        milestone: "M2",
+        shippedOnStellar: true,
+      },
+      {
+        title: "App marketplace",
+        description: "Apps that run inside the dashboard. See the marketplace.",
+        icon: "Store",
+        status: "porting",
+        milestone: "M2",
+        shippedOnStellar: true,
+      },
+      {
+        title: "Plugin SDK",
+        description: "Build metered integrations on top of the platform.",
+        icon: "Puzzle",
+        status: "porting",
+        milestone: "M2",
+        shippedOnStellar: true,
+      },
+    ],
+  },
+  {
+    tab: "Growth and security",
+    items: [
+      {
+        title: "AI Merchant Copilot",
+        description: "Your billing team, in a chat box. See the copilot.",
+        icon: "Sparkles",
+        status: "planned",
+        milestone: "M3",
+      },
+      {
+        title: "Experiments and cohorts",
+        description:
+          "Test prices and checkout variants, build cohorts from billing events and sync with PostHog.",
+        icon: "FlaskConical",
+        status: "planned",
+      },
+      {
+        title: "Two-factor authentication",
+        description: "Protect the dashboard with 2FA.",
+        icon: "ShieldCheck",
+        status: "porting",
+        milestone: "M2",
+        shippedOnStellar: true,
+      },
+      {
+        title: "Team roles and org settings",
+        description: "Invite teammates and control what they can do.",
+        icon: "UsersRound",
+        status: "planned",
+      },
+    ],
+  },
+];
+
+export const platform = {
+  eyebrow: "Platform",
+  title: "One platform. Every way money moves.",
+  description:
+    "WhitechainTools is the whole money stack, not a single feature.",
+} as const;
