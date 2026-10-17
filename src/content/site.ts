@@ -547,3 +547,194 @@ export const platform = {
   description:
     "WhitechainTools is the whole money stack, not a single feature.",
 } as const;
+
+export const dashboardTour = {
+  eyebrow: "Dashboard",
+  title: "A dashboard your finance team will actually like.",
+  description: "Ten pages, one place to see every payment, plan and payout.",
+  sampleDataLabel: "Sample data",
+  products: [
+    {
+      name: "Pro monthly",
+      type: "Subscription",
+      price: "$20.00",
+      interval: "Monthly",
+    },
+    {
+      name: "Team yearly",
+      type: "Subscription",
+      price: "$200.00",
+      interval: "Yearly",
+    },
+    {
+      name: "Starter license",
+      type: "One-time",
+      price: "$50.00",
+      interval: "None",
+    },
+    {
+      name: "API usage",
+      type: "Subscription",
+      price: "$0.10 / call",
+      interval: "Metered",
+    },
+  ],
+  transactions: [
+    {
+      id: "pay_001",
+      status: "confirmed",
+      amount: "20.00",
+      token: "USDT",
+      hash: "0x4f2a…9c1e",
+    },
+    {
+      id: "pay_002",
+      status: "pending",
+      amount: "50.00",
+      token: "USDC",
+      hash: "0x81bd…02aa",
+    },
+    {
+      id: "pay_003",
+      status: "confirmed",
+      amount: "200.00",
+      token: "WBT",
+      hash: "0xa7c3…55f0",
+    },
+    {
+      id: "pay_004",
+      status: "failed",
+      amount: "20.00",
+      token: "USDT",
+      hash: "0x39e8…b4d7",
+    },
+  ],
+  customers: [
+    { email: "ada@example.com", wallet: "0x12ab…77cd", plan: "Pro monthly" },
+    { email: "grace@example.com", wallet: "0x90ef…31a2", plan: "Team yearly" },
+    { email: "linus@example.com", wallet: "0x5c4d…ee08", plan: "None" },
+    { email: "alan@example.com", wallet: "0xb6a1…4420", plan: "Pro monthly" },
+  ],
+  subscriptions: [
+    {
+      customer: "ada@example.com",
+      plan: "Pro monthly",
+      status: "active",
+      renewal: "Jan 12",
+    },
+    {
+      customer: "grace@example.com",
+      plan: "Team yearly",
+      status: "trialing",
+      renewal: "Jan 20",
+    },
+    {
+      customer: "linus@example.com",
+      plan: "Pro monthly",
+      status: "paused",
+      renewal: "Paused",
+    },
+    {
+      customer: "alan@example.com",
+      plan: "Pro monthly",
+      status: "canceled",
+      renewal: "Ended",
+    },
+  ],
+  payouts: {
+    balances: [
+      { token: "USDT", amount: "4,200.00" },
+      { token: "USDC", amount: "1,800.00" },
+      { token: "WBT", amount: "320.00" },
+    ],
+    history: [
+      { date: "Jan 05", amount: "2,000.00", token: "USDT", status: "paid" },
+      { date: "Dec 20", amount: "1,500.00", token: "USDC", status: "paid" },
+      { date: "Dec 02", amount: "800.00", token: "USDT", status: "paid" },
+    ],
+  },
+  marketplace: [
+    { name: "Resend", description: "Transactional emails", installed: true },
+    { name: "Loops", description: "Lifecycle emails", installed: true },
+    {
+      name: "FirstPromoter",
+      description: "Affiliate tracking",
+      installed: false,
+    },
+    { name: "PostHog", description: "Product analytics", installed: false },
+  ],
+  developers: {
+    apiKeys: [
+      { name: "Test key", masked: "wct_test_••••••••3f9a", mode: "testnet" },
+      { name: "Live key", masked: "wct_live_••••••••b21c", mode: "mainnet" },
+    ],
+    endpoints: [
+      { url: "https://example.com/hooks/billing", events: 128 },
+      { url: "https://example.com/hooks/email", events: 64 },
+    ],
+    deliveries: [
+      { event: "payment.confirmed", code: 200 },
+      { event: "subscription.renewed", code: 200 },
+      { event: "payment.failed", code: 500 },
+    ],
+  },
+  settings: {
+    orgName: "Acme Labs",
+    twoFactorLabel: "Two-factor authentication",
+    brandingLabel: "Checkout branding color",
+  },
+} as const;
+
+export const webhookEvents = [
+  {
+    group: "Customer",
+    events: ["customer.created", "customer.updated", "customer.deleted"],
+  },
+  {
+    group: "Payment method",
+    events: ["payment_method.created", "payment_method.deleted"],
+  },
+  { group: "Checkout", events: ["checkout.created"] },
+  {
+    group: "Payment",
+    events: ["payment.pending", "payment.confirmed", "payment.failed"],
+  },
+  { group: "Refund", events: ["refund.succeeded", "refund.failed"] },
+  {
+    group: "Subscription",
+    events: [
+      "subscription.created",
+      "subscription.updated",
+      "subscription.renewed",
+      "subscription.canceled",
+    ],
+  },
+] as const;
+
+export const developers = {
+  eyebrow: "Developers",
+  title: "Built like the APIs developers already love.",
+  description: "Predictable, typed and documented from day one.",
+  bullets: [
+    "Versioned API, pinned per key or per request",
+    "Cursor pagination on every list endpoint",
+    "Testnet and mainnet keys, the key encodes the environment",
+    "OpenAPI spec for generated clients",
+    "Typed TypeScript SDK",
+    "MCP server for AI agents",
+    "Rate limits documented",
+  ],
+  eventsTitle: "Webhook events",
+  envelopeNote:
+    "*.updated events include the previous values of changed fields in data.previous_attributes.",
+  envelopeCode: `{
+  "id": "evt_123",
+  "type": "subscription.updated",
+  "created": 1767225600,
+  "livemode": false,
+  "data": {
+    "object": { "id": "sub_123", "status": "active" },
+    "previous_attributes": { "status": "trialing" }
+  }
+}`,
+} as const;
