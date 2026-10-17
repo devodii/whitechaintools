@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 
 import { Icon } from "@/components/icon";
 import { KpiTile } from "@/components/mock/kpi-tile";
-import { RevenueChart } from "@/components/mock/revenue-chart";
+import { LazyRevenueChart } from "@/components/mock/lazy-revenue-chart";
 import { SampleBadge } from "@/components/mock/sample-badge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -72,7 +72,7 @@ export function HeroMockup() {
               <p className="text-muted-foreground mb-2 text-[11px]">
                 {heroMockup.chartTitle}
               </p>
-              <RevenueChart className="aspect-auto h-28 w-full" />
+              <LazyRevenueChart className="aspect-auto h-28 w-full" />
             </div>
           </div>
         </div>

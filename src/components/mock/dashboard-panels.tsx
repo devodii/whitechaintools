@@ -1,7 +1,7 @@
 "use client";
 
 import { KpiTile } from "@/components/mock/kpi-tile";
-import { RevenueChart } from "@/components/mock/revenue-chart";
+import { LazyRevenueChart } from "@/components/mock/lazy-revenue-chart";
 import { StatusPill } from "@/components/mock/status-pill";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -38,7 +38,7 @@ function Overview() {
         <p className="text-muted-foreground mb-2 text-xs">
           {heroMockup.chartTitle}
         </p>
-        <RevenueChart className="aspect-auto h-40 w-full" />
+        <LazyRevenueChart className="aspect-auto h-40 w-full" />
       </div>
     </div>
   );
