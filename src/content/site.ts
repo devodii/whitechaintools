@@ -851,3 +851,200 @@ export const mechanism = {
   note: "Built on ERC-4337 smart accounts and spend permissions. Every renewal is a verifiable onchain transaction.",
   noteStatus: { status: "porting", milestone: "M1" },
 } as const;
+
+export type AdapterCategory =
+  "Commerce" | "Auth" | "AI" | "Files" | "Agents" | "Core";
+
+export interface Adapter {
+  name: string;
+  monogram: string;
+  category: AdapterCategory;
+  description: string;
+  status: Status;
+  milestone?: Milestone;
+  shippedOnStellar: boolean;
+  docsHref?: string;
+}
+
+export const adapterCategories = [
+  "All",
+  "Commerce",
+  "Auth",
+  "AI",
+  "Files",
+  "Agents",
+  "Core",
+] as const;
+
+export const adapters = {
+  eyebrow: "Adapters",
+  title: "Plugs into the stack you already run.",
+  description: "Framework adapters and SDKs, ported from StellarTools.",
+  docsLabel: "Stellar version docs",
+  playgroundLabel:
+    "Try every adapter live in the StellarTools Adapter Playground",
+  items: [
+    {
+      name: "WooCommerce",
+      monogram: "Wc",
+      category: "Commerce",
+      description: "Accept Whitechain payments in any WooCommerce store.",
+      status: "porting",
+      milestone: "M2",
+      shippedOnStellar: true,
+      docsHref: "https://docs.stellartools.dev/integrations/woocommerce",
+    },
+    {
+      // TODO(founder): verify Shopify status and add the docs link
+      name: "Shopify",
+      monogram: "Sh",
+      category: "Commerce",
+      description:
+        "Offsite checkout for Shopify stores, subscriptions managed in WhitechainTools.",
+      status: "porting",
+      milestone: "M2",
+      shippedOnStellar: false,
+    },
+    {
+      name: "MedusaJS",
+      monogram: "Md",
+      category: "Commerce",
+      description: "WhitechainTools as a payment provider in Medusa v2.",
+      status: "porting",
+      milestone: "M2",
+      shippedOnStellar: true,
+      docsHref: "https://docs.stellartools.dev/integrations/medusajs",
+    },
+    {
+      name: "Better Auth",
+      monogram: "Ba",
+      category: "Auth",
+      description: "Billing plugin for Better Auth apps.",
+      status: "porting",
+      milestone: "M2",
+      shippedOnStellar: true,
+      docsHref: "https://docs.stellartools.dev/integrations/betterauth",
+    },
+    {
+      name: "Vercel AI SDK",
+      monogram: "Ai",
+      category: "AI",
+      description: "Gate AI model access to paying subscribers.",
+      status: "porting",
+      milestone: "M2",
+      shippedOnStellar: true,
+      docsHref: "https://docs.stellartools.dev/integrations/aisdk",
+    },
+    {
+      name: "LangChain",
+      monogram: "Lc",
+      category: "AI",
+      description: "Gate LangChain model access to subscribers.",
+      status: "porting",
+      milestone: "M2",
+      shippedOnStellar: true,
+      docsHref: "https://docs.stellartools.dev/integrations/langchain",
+    },
+    {
+      name: "UploadThing",
+      monogram: "Ut",
+      category: "Files",
+      description: "Gate file uploads to subscribers.",
+      status: "porting",
+      milestone: "M2",
+      shippedOnStellar: true,
+      docsHref: "https://docs.stellartools.dev/integrations/uploadthing",
+    },
+    {
+      name: "MCP server",
+      monogram: "Mc",
+      category: "Agents",
+      description:
+        "Let Cursor, Claude and other agents manage customers and subscriptions.",
+      status: "porting",
+      milestone: "M2",
+      shippedOnStellar: true,
+      docsHref: "https://docs.stellartools.dev/integrations/mcp",
+    },
+    {
+      name: "TypeScript SDK",
+      monogram: "Ts",
+      category: "Core",
+      description: "Typed client for every API resource.",
+      status: "porting",
+      milestone: "M1",
+      shippedOnStellar: true,
+      docsHref: "https://docs.stellartools.dev/integrations/typescript-sdk",
+    },
+    {
+      name: "Plugin SDK",
+      monogram: "Ps",
+      category: "Core",
+      description:
+        "Build your own metered integration on top of WhitechainTools.",
+      status: "porting",
+      milestone: "M2",
+      shippedOnStellar: true,
+      docsHref: links.github,
+    },
+    {
+      name: "GoHighLevel",
+      monogram: "Gh",
+      category: "Commerce",
+      description: "Billing for GHL agencies and their sub-accounts.",
+      status: "planned",
+      shippedOnStellar: false,
+    },
+  ] satisfies Adapter[],
+} as const;
+
+export interface MarketplaceApp {
+  name: string;
+  description: string;
+  icon: LucideIconName;
+  status: Status;
+  shippedOnStellar: boolean;
+}
+
+export const marketplace = {
+  eyebrow: "Marketplace",
+  title: "An app marketplace inside your dashboard.",
+  description:
+    "Apps run natively in the dashboard and react to billing events. Credentials are stored encrypted, and each app's bridge server only ever receives short-lived signed tokens, so third parties never hold the merchant's keys.",
+  bridge: ["Dashboard", "JWT bridge", "App"],
+  apps: [
+    {
+      name: "Resend",
+      description: "Transactional emails on payment events.",
+      icon: "Mail",
+      status: "porting",
+      shippedOnStellar: true,
+    },
+    {
+      name: "Loops",
+      description: "Lifecycle emails and workflows.",
+      icon: "Mail",
+      status: "porting",
+      shippedOnStellar: true,
+    },
+    {
+      name: "FirstPromoter",
+      description: "Affiliate tracking.",
+      icon: "Users",
+      status: "planned",
+      shippedOnStellar: false,
+    },
+    {
+      name: "PostHog",
+      description: "Product analytics and billing cohorts.",
+      icon: "ChartColumn",
+      status: "planned",
+      shippedOnStellar: false,
+    },
+  ] satisfies MarketplaceApp[],
+  build: {
+    title: "Build your own app",
+    description: "Ship an integration into every merchant's dashboard.",
+    href: links.buildingApps,
+  },
+} as const;
